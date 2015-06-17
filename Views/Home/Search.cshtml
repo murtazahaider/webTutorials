@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "Search Result";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.title</title>
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <!--<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+     <link href="~/Content/agency.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/style-responsive.css" rel="stylesheet" /> -->
+
+    <link href="~/Content/css.css" rel="stylesheet" />
+    <script src="~/bootstrap.js"></script>
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group">
+                <h2 class="list-group-item active">Topic </h2>
+                @foreach (WebTutorialBlog.Models.tutorial emp in Model)
+                {
+
+                    <a href="~/Home/searchSelectedTopic?id=@emp.Id&languageName=@emp.lang_name" class="list-group-item"> @emp.Topic_name  (@emp.lang_name.ToUpper())</a>
+                }
+
+
+            </div>
+
+        </div>
+    </div>
+    <footer>
+        <div class="row">
+
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h4 id="addComment">Leave a Comment:</h4>
+                @if (Session["user"] == null)
+                {
+                    <p class="well">Please <a href="/Home/Login">sign in</a> to add comments!</p>
+                }
+                else
+                {
+                    <form action="~/Home/addComment">
+                        <div class="form-group">
+                            <label class="sr-only" for="form-username">Comment</label>
+                            <textarea rows="1" aria-disabled="true" name="comment" class="form-group form-control" placeholder="Comment" required data-validation-required-message="Please enter a Comment."></textarea>
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Comment" />
+                    </form>
+                }
+                <hr>
+                <ul class="media-list comments">
+
+                    <li class="media">
+                        @foreach (var n in ViewBag.comment1)
+                        {
+                            <div class="pull-left">
+                                @if (n.image != null)
+                                {
+                                    <img class="media-object img-circle img-thumbnail" src="@n.image" width="64" alt="Generic placeholder image">
+                                }
+                                else
+                                {
+                                    <img class="media-object img-circle img-thumbnail" src="~/img/guest.png" width="64" alt="Generic placeholder image">
+                                }
+                            </div>
+                            <div class="media-body">
+
+                                <h5 class="media-heading pull-left">@n.username</h5>
+                                <div class="comment-info pull-left">
+                                    <div class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Sent from ***0.0.1"><i class="fa fa-user"></i></div>
+                                    <div class="btn btn-primary btn-xs"><a class="fa fa-envelope white" href="mailto:loneswan@loneswan.net"></a></div>
+                                    <div class="btn btn-default btn-xs"><i class="fa fa-clock-o"></i> @n.date</div>
+                                </div>
+                                <br class="clearfix">
+                                <p class="well">@n.coment</p>
+                            </div>
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted"></p>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+</body>
+</html>

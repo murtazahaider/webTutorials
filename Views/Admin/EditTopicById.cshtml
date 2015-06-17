@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "EditTopic";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model WebTutorialBlog.Models.tutorial
+
+<br/>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="inner-bg">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 form-box">
+                <div class="form-bottom">
+                    @using (Html.BeginForm("EditSave", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data"}))
+                    {
+                        @Html.HiddenFor(m => m.Id)
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.lang_name)
+                            @Html.TextBoxFor(m => m.lang_name, new { @class = "form-password form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Topic_name)
+                            @Html.TextBoxFor(m => m.Topic_name, new { @class = "form-password form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.topic_def)
+                            @Html.TextAreaFor(m => m.topic_def, new { @class = "form-password form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.topic_code)
+                            @Html.TextAreaFor(m => m.topic_code, new { @class = "form-password form-control" })
+                        </div>
+                        <div>
+                             Upload Image: <input type="file" name="output" id="img" />
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.output)
+                            @Html.TextBoxFor(m => m.output, new { @class = "form-password form-control" })
+                        </div>
+                        
+                        
+                        
+                        <input type="submit" class="btn btn-primary" value="Save" />
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

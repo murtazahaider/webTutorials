@@ -1,0 +1,18 @@
+﻿
+<a href="/Home/Index"> <h2 style="text-align:center;color:darkviolet;">HOME </h2></a>
+
+
+
+<h1 style="text-align:center;color:darkviolet;">ViewAll</h1>
+@foreach (WebTutorialBlog.Models.user emp in Model)
+{
+    <h3 style="text-align:center;color:darkviolet;">@emp.Id</h3>
+    <h3 style="text-align:center;color:darkviolet;">@emp.username</h3>
+    <h3 style="text-align:center;color:darkviolet;">@emp.email</h3>
+
+    <h3 style="text-align:center;color:darkviolet;">@emp.password</h3> <br />
+
+
+    <br />
+    <br />
+}

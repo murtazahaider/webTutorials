@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <script src="~/Content/Chart.js"></script>
+    <link href="~/Content/stylev.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/stylev1.css" rel="stylesheet" />
+    <link href="~/Content/css.css" rel="stylesheet" />
+    <link href="~/Content/font-awesomev.css" rel="stylesheet" />
+    <link href="~/Content/jquery.gritter.css" rel="stylesheet" />
+    <link href="~/Content/zabuto_calendar.css" rel="stylesheet" />
+    <link href="~/Content/style-responsivev.css" rel="stylesheet" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+    <header class="header black-bg">
+        <div class="sidebar-toggle-box">
+            <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+        </div>
+        <!--logo start-->
+        <a href="index" class="logo"><b>WEB Tutorial Blog</b></a>
+
+        <div class="top-menu">
+            <ul class="nav pull-right top-menu">
+                <li><a class="logout" href="/Home/Logout">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <aside>
+        <div id="sidebar" class="nav-collapse ">
+          
+            <ul class="sidebar-menu" id="nav-accordion">
+                    
+                        @if (Session["img"] != null)
+                        {
+                            <li><p class="centered"> <img class="media-object img-circle img-thumbnail" src=@Session["img"] width="64" alt="Generic placeholder image"></p></li>
+                        }
+                      else
+                      {
+                          <li><h5 class="centered"><img class="media-object img-circle img-thumbnail" src="~/img/guest.png" width="64" alt="Generic placeholder image"></h5></li>
+                      }
+
+                <li><h5 class="centered">@Session["user"]</h5></li>
+
+          
+                <li class="mt">
+                    <a class="active" href="/Admin/addTopic">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Add Topic to Language</span>
+                    </a>
+                </li>
+                <li class="mt">
+                    <a href="/Admin/EditTopic">
+                        <i class="fa fa-desktop"></i>
+                        <span>Edit Topic</span>
+                    </a>
+                </li>
+
+
+                <li class="mt">
+                    <a href="/Admin/viewUsers">
+                        <i class="fa fa-tasks"></i>
+                        <span>View Users</span>
+                    </a>
+                </li>
+                <li class="mt">
+                    <a href="/Admin/viewComments">
+                        <i class="fa fa-tasks"></i>
+                        <span>View Comments</span>
+                    </a>
+                </li>
+                
+                <li class="mt">
+                    <a href="/Home/Index">
+                        <i class="fa fa-th"></i>
+                        <span>Blog Home</span>
+                    </a>
+
+                </li>
+                <li class="mt">
+
+                    <a href="/Admin/addLanguage">
+                        <i class="fa fa-dashboard">
+                            <span>Add Language</span>
+                        </i>
+                    </a>
+                </li>
+               
+
+            </ul>
+        </div>
+    </aside>
+    <section id="main">
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+        @RenderBody()
+    </section>
+</body>
+</html>

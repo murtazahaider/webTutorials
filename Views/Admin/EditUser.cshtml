@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model WebTutorialBlog.Models.user
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="top-content">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        
+        <div class="inner-bg">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3 form-box">
+                        <div class="form-bottom">
+                            @using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { @class = "login-form" }))
+                            {
+                                @Html.HiddenFor(m => m.Id)
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.username)
+                                    @Html.TextBoxFor(m => m.username, new { @class = "form-password form-control" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.password)
+                                    @Html.TextBoxFor(m => m.password, new { @class = "form-password form-control" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.email)
+                                    @Html.TextBoxFor(m => m.email, new { @class = "form-password form-control" })
+                                </div>
+                                <input type="submit" class="btn btn-primary" value="Save" />
+                            }
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

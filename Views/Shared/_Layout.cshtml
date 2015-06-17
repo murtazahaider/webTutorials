@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.title</title>
+        @Styles.Render("~/Content/css")
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <!--<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+     <link href="~/Content/agency.css" rel="stylesheet" />   
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />   
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/style-responsive.css" rel="stylesheet" /> -->
+
+    <link href="~/Content/css.css" rel="stylesheet" />
+    <script src="~/bootstrap.js"></script>
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" /> 
+    
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse" style=" height:70px;">
+        
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="text-align:center;">
+            
+                <div class="navbar-header">
+                    <h1 style="color:white;"><i>WEB Tutorial Blog</i></h1>
+                    
+                </div>
+            
+            
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+                    @foreach (var n in ViewBag.language)
+                    {
+                        <li><a href="/Home/Language?name=@n.lang_name">@n.lang_name.ToUpper()</a></li>
+                    }
+                <li>@Html.ActionLink("About", "about", "Home")</li>
+                <li>@Html.ActionLink("Contact", "contact", "Home")</li>           
+
+                 @if ( Session["user"] == null)
+                    {
+                         <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                    }
+                    else                     
+                     {
+                        <li><a href="/Home/Profile">@Session["user"]</a></li>
+                    if (Session["img"] != null)
+                    {
+                        <li> <img class="media-object img-circle img-thumbnail" src=@Session["img"] width="64" alt="Generic placeholder image"></li>
+                    }
+                    else
+                    {
+                        <li><img class="media-object img-circle img-thumbnail" src="~/img/guest.png" width="64" alt="Generic placeholder image"></li>
+                    }
+                    <li><a href="/Home/Logout">Logout</a></li>
+                     }
+                </ul>
+            <form class="navbar-form navbar-right" action="/Home/Search" role="search">
+                <div class="form-group">
+                    <input class="form-control" name="search" placeholder="Search" type="text">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+            
+       
+
+            </div>
+    
+    </nav>
+    <header class="intro-header">
+
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+            </div>
+        </div>
+
+    </header>
+
+
+    <section id="main">
+
+        @RenderBody()
+        @Scripts.Render("~/bundles/jquery")
+
+        @RenderSection("scripts", required: false)
+    </section>
+   
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted"></p>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+</body>
+</html>
+

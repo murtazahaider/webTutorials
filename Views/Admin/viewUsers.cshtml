@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "viewUsers";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+   <!-- <div>
+        Html.ActionLink("Add Item", "AddItem")
+        <table border="1">
+            foreach (var i in Model)
+            {
+                <tr>
+                    <td>i.Id</td>
+                    <td>i.Name</td>
+                    <td>i.Price</td>
+                    <td>Html.ActionLink("Edit", "EditItem", new { id = i.Id })</td>
+                    <td>Html.ActionLink("Delete", "DeleteItem", new { id = i.Id })</td><
+                </tr>
+            }
+        </table>
+    </div>-->
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="text-align:center;">
+        <div class="content-panel">
+            <hr>
+            <br />
+            <br />
+
+            <table class="table" align="center" border="1">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>username</th>
+                        <th>password</th>
+                        <th>email</th>
+                        <th>update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var i in Model)
+                    {
+                        <tr>
+                            <th>@i.Id</th>
+                            <th>@i.username</th>
+                            <th>@i.password</th>
+                            <th>@i.email</th>
+                            <th><a href="/Admin/EditUser?id=@i.Id"><img src="~/img/edipng.png" width="16" /></a></th>
+                            <th><a href="/Admin/DeleteUser?id=@i.Id"><img src="~/img/delete.png" width="16" /></a></th>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div><! --/content-panel -->
+    </div><!-- /col-md-12 -->
+</body>
+</html>
+

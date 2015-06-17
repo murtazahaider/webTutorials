@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "selectedTopic";
+    Layout = "~/Views/Shared/_Tutorial.cshtml";
+}
+
+
+<div class="container">
+    <div class="col-lg-7 col-md-9">
+
+        @foreach (WebTutorialBlog.Models.tutorial emp in Model)
+        {
+                if (ViewBag.Id == emp.Id)
+                {
+                    <h2 class="heading">@emp.Topic_name </h2>
+                    <p> @emp.topic_def </p>
+                    <br />
+                    <h2 class="heading">Code </h2>
+                
+        
+                     string[] str = (emp.topic_code).Split('/');
+                     foreach (var v in str)
+                     {
+                        <code> @v  </code><br/>
+                     }
+                     if (emp.output != null)
+                     { 
+                         <h2 class="heading">Output</h2>
+                         <img src="/output/@emp.output" class="img-responsive" alt="" width="300" />
+                     }
+
+                }
+
+        }
+
+    </div>
+
+</div>

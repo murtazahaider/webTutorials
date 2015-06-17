@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Comments";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+    <div class="row">
+
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <h4 id="addComment">Leave a Comment:</h4>
+            @if (Session["user"] == null)
+            {
+                <p class="well">Please <a href="/Home/Login">sign in</a> to add comments!</p>
+            }
+            else
+            {
+                <form action="~/Admin/addComment">
+                    <div class="form-group">
+                        <label class="sr-only" for="form-username">Comment</label>
+                        <textarea rows="1" aria-disabled="true" name="comment" class="form-group form-control" placeholder="Comment" required data-validation-required-message="Please enter a Comment."></textarea>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Comment" />
+                </form>
+            }
+            <hr>
+            <ul class="media-list comments">
+                <li class="media">
+                    @foreach (WebTutorialBlog.Models.comment n in Model)
+                    {
+                        <div class="pull-left">
+                            @if (n.image != null)
+                            {
+                                <img class="media-object img-circle img-thumbnail" src="@n.image" width="64" alt="Generic placeholder image">
+                            }
+                            else
+                            {
+                                <img class="media-object img-circle img-thumbnail" src="~/img/guest.png" width="64" alt="Generic placeholder image">
+                            }
+                        </div>
+                        <div class="media-body">
+
+                            <h5 class="media-heading pull-left">@n.username</h5>
+                            <div class="comment-info pull-left">
+                                <div class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Sent from ***0.0.1"><i class="fa fa-user"></i></div>
+                                <div class="btn btn-primary btn-xs"><a class="fa fa-envelope white" href="mailto:loneswan@loneswan.net"></a></div>
+                                <div class="btn btn-default btn-xs"><i class="fa fa-clock-o"></i> @n.date</div>
+                                <div class="pull-right"><a href="/Admin/Deletecomment?id=@n.Id"><img src="~/img/delete.png" width="16" /></a></div>
+                            </div>
+                            <br class="clearfix">
+                            <p class="well">@n.coment</p>
+                            
+                        </div>
+                    }
+
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+

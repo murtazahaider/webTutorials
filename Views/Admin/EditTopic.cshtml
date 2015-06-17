@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "EditTopic";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="text-align:center;">
+    <div class="content-panel">
+        <hr>
+        <br />
+        <br />
+
+        <table class="table" align="center" border="1">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Language</th>
+                    <th>Topic name</th>
+                    <th>update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (WebTutorialBlog.Models.tutorial i in Model)
+                {
+                    <tr>
+                        <th>@i.Id</th>
+                        <th>@i.lang_name</th>
+                        <th>@i.Topic_name</th>
+                        <th><a href="/Admin/EditTopicById?id=@i.Id"><img src="~/img/edipng.png" width="16" /></a></th>
+                        <th><a href="/Admin/DeleteTopic?id=@i.Id"><img src="~/img/delete.png" width="16" /></a></th>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div><! --/content-panel -->
+</div><!-- /col-md-12 -->
